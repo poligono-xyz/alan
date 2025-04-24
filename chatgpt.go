@@ -7,62 +7,14 @@ import (
 	"github.com/openai/openai-go"
 )
 
-type ChatModel string
-
-var (
-	// GPT 4.5
-	ChatModelGPT4_5Preview           ChatModel = "gpt-4-5-preview"
-	ChatModelGPT4_5Preview2025_02_27 ChatModel = "gpt-4-5-preview-2025-02-27"
-
-	// GPT 4
-	ChatModelGPT4             ChatModel = "gpt-4"
-	ChatModelGPT4_0125Preview ChatModel = "gpt-4-0125-preview"
-	ChatModelGPT4_0314        ChatModel = "gpt-4-0314"
-	ChatModelGPT4_0613        ChatModel = "gpt-4-0613"
-	ChatModelGPT4_1106Preview ChatModel = "gpt-4-1106-preview"
-	ChatModelGPT4_32k         ChatModel = "gpt-4-32k"
-	ChatModelGPT4_32k0314     ChatModel = "gpt-4-32k-0314"
-	ChatModelGPT4_32k0613     ChatModel = "gpt-4-32k-0613"
-
-	// GPT 4 Turbo
-	ChatModelGPT4Turbo           ChatModel = "gpt-4-turbo"
-	ChatModelGPT4TurboPreview    ChatModel = "gpt-4-turbo-preview"
-	ChatModelGPT4Turbo2024_04_09 ChatModel = "gpt-4-turbo-2024-04-09"
-
-	// GPT 4o
-	ChatModelGPT4o           ChatModel = "gpt-4o"
-	ChatModelChatgpt4oLatest ChatModel = "chatgpt-4o-latest"
-	ChatModelGPT4o2024_05_13 ChatModel = "gpt-4o-2024-05-13"
-	ChatModelGPT4o2024_08_06 ChatModel = "gpt-4o-2024-08-06"
-	ChatModelGPT4o2024_11_20 ChatModel = "gpt-4o-2024-11-20"
-
-	// GPT 4o Mini
-	ChatModelGPT4oMini           ChatModel = "gpt-4o-mini"
-	ChatModelGPT4oMini2024_07_18 ChatModel = "gpt-4o-mini-2024-07-18"
-
-	// GPT 3.5 Turbo
-	ChatModelGPT3_5Turbo        ChatModel = "gpt-3.5-turbo"
-	ChatModelGPT3_5Turbo0125    ChatModel = "gpt-3.5-turbo-0125"
-	ChatModelGPT3_5Turbo0301    ChatModel = "gpt-3.5-turbo-0301"
-	ChatModelGPT3_5Turbo0613    ChatModel = "gpt-3.5-turbo-0613"
-	ChatModelGPT3_5Turbo1106    ChatModel = "gpt-3.5-turbo-1106"
-	ChatModelGPT3_5Turbo16k     ChatModel = "gpt-3.5-turbo-16k"
-	ChatModelGPT3_5Turbo16k0613 ChatModel = "gpt-3.5-turbo-16k-0613"
-)
-
-type ChatGPTConfig struct {
-	Model  ChatModel
-	ApiKey string
-}
-
 type chatgptImpl struct {
 	ctx    context.Context
 	client *openai.Client
-	config ChatGPTConfig
+	model  Model
 }
 
 func (self *chatgptImpl) Prompt(t string) (string, error) {
-	model, err := self.fromAlanChatModelTOpenAIChatModel(self.config.Model)
+	model, err := self.fromAlanModelToOpenAIChatModel(self.model)
 	if err != nil {
 		return "", err
 	}
@@ -80,7 +32,7 @@ func (self *chatgptImpl) Prompt(t string) (string, error) {
 	return t, nil
 }
 
-func (self *chatgptImpl) fromAlanChatModelTOpenAIChatModel(model ChatModel) (openai.ChatModel, error) {
+func (self *chatgptImpl) fromAlanModelToOpenAIChatModel(model Model) (openai.ChatModel, error) {
 	switch model {
 	// GPT 4.5
 	case ChatModelGPT4_5Preview:
@@ -152,8 +104,6 @@ func (self *chatgptImpl) fromAlanChatModelTOpenAIChatModel(model ChatModel) (ope
 		return "", fmt.Errorf("unsupported model: %s", model)
 	}
 }
-
-// 	return "", fmt.Errorf("unsupported model: %s", model)
 
 // func (self *chatgptImpl) PromptStream(t string) (string, error) {
 // 	chatCompletion, err := self.client.Chat.Completions.New(self.ctx, openai.ChatCompletionNewParams{

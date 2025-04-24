@@ -3,6 +3,7 @@ module github.com/poligono-xyz/alan
 go 1.23.5
 
 require (
+	github.com/anthropics/anthropic-sdk-go v0.2.0-beta.3
 	github.com/openai/openai-go v0.1.0-alpha.62
 	google.golang.org/genai v0.7.0
 )

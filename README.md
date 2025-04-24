@@ -26,65 +26,90 @@ You can create a client for either ChatGPT or Gemini by providing the appropriat
 ### ChatGPT Example
 
 ```go
-package main
-
 import (
-    "context"
-    "fmt"
+  "fmt"
 
-    "github.com/poligono-xyz/alan"
+  "github.com/poligono-xyz/alan"
+  "github.com/poligono-xyz/alan/option"
 )
 
 func main() {
-    ctx := context.Background()
+  client, err := alan.NewClient(
+    option.WithProvider(alan.GeminiProvider),
+    option.WithModel(alan.ChatModelChatgpt4oLatest),
+    option.WithAPIKey("api-key"),
+  )
+  if err != nil {
+    panic(err)
+  }
 
-    client, err := alan.NewClient(ctx, alan.ChatGPTConfig{
-        ApiKey: "your-chatgpt-api-key",
-        Model:  alan.ChatModelGPT4,
-    })
-    if err != nil {
-        panic(err)
-    }
+  result, err := client.Prompt("Where is the Dominican Republic located?")
+  if err != nil {
+    panic(err)
+  }
 
-    result, err := client.Prompt("What is the capital of France?")
-    if err != nil {
-        panic(err)
-    }
-
-    fmt.Println(result)
+  fmt.Println(result)
 }
 ```
 
 ### Gemini Example
 
 ```go
-package main
-
 import (
-    "context"
-    "fmt"
+  "fmt"
 
-    "github.com/poligono-xyz/alan"
+  "github.com/poligono-xyz/alan"
+  "github.com/poligono-xyz/alan/option"
 )
 
 func main() {
-    ctx := context.Background()
+  client, err := alan.NewClient(
+    option.WithProvider(alan.GeminiProvider),
+    option.WithModel(alan.Gemini15Flash),
+    option.WithAPIKey("api-key"),
+  )
+  if err != nil {
+    panic(err)
+  }
 
-    client, err := alan.NewClient(ctx, alan.GeminiConfig{
-        ApiKey: "your-gemini-api-key",
-        Model:  alan.Gemini15Flash,
-    })
-    if err != nil {
-        panic(err)
-    }
+  result, err := client.Prompt("Where is the Dominican Republic located?")
+  if err != nil {
+    panic(err)
+  }
 
-    result, err := client.Prompt("Where is the Dominican Republic located?")
-    if err != nil {
-        panic(err)
-    }
-
-    fmt.Println(result)
+  fmt.Println(result)
 }
+
+```
+
+### Claude Example
+
+```go
+import (
+  "fmt"
+
+  "github.com/poligono-xyz/alan"
+  "github.com/poligono-xyz/alan/option"
+)
+
+func main() {
+  client, err := alan.NewClient(
+    option.WithProvider(alan.GeminiProvider),
+    option.WithModel(alan.Gemini15Flash),
+    option.WithAPIKey("api-key"),
+  )
+  if err != nil {
+    panic(err)
+  }
+
+  result, err := client.Prompt("Where is the Dominican Republic located?")
+  if err != nil {
+    panic(err)
+  }
+
+  fmt.Println(result)
+}
+
 ```
 
 ## Supported Models
