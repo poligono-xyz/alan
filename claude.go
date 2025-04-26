@@ -51,6 +51,30 @@ func (self *claudeImpl) Prompt(t string) (string, error) {
 	return "", nil
 }
 
+func (self *claudeImpl) GetModel() Model {
+	return self.model
+}
+
+func (self *claudeImpl) SetModel(model Model) {
+	self.model = model
+}
+
+func (self *claudeImpl) GetProvider() Provider {
+	return ClaudeProvider
+}
+
+func (self *claudeImpl) NewChat(options ...ChatOption) (Chat, error) {
+	config := &ChatConfig{
+		Temperature: 0.5,
+	}
+
+	for _, option := range options {
+		option(config)
+	}
+	chat := &chatImpl{}
+	return chat, nil
+}
+
 func (self *claudeImpl) fromAlanModelToOpenAIChatModel(model Model) (anthropic.Model, error) {
 	switch model {
 	case ModelClaude3_7SonnetLatest:

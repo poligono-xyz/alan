@@ -32,6 +32,30 @@ func (self *chatgptImpl) Prompt(t string) (string, error) {
 	return t, nil
 }
 
+func (self *chatgptImpl) GetModel() Model {
+	return self.model
+}
+
+func (self *chatgptImpl) GetProvider() Provider {
+	return ChatGPTProvider
+}
+
+func (self *chatgptImpl) SetModel(model Model) {
+	self.model = model
+}
+
+func (self *chatgptImpl) NewChat(options ...ChatOption) (Chat, error) {
+	config := &ChatConfig{
+		Temperature: 0.5,
+	}
+
+	for _, option := range options {
+		option(config)
+	}
+	chat := &chatImpl{}
+	return chat, nil
+}
+
 func (self *chatgptImpl) fromAlanModelToOpenAIChatModel(model Model) (openai.ChatModel, error) {
 	switch model {
 	// GPT 4.5
@@ -104,38 +128,3 @@ func (self *chatgptImpl) fromAlanModelToOpenAIChatModel(model Model) (openai.Cha
 		return "", fmt.Errorf("unsupported model: %s", model)
 	}
 }
-
-// func (self *chatgptImpl) PromptStream(t string) (string, error) {
-// 	chatCompletion, err := self.client.Chat.Completions.New(self.ctx, openai.ChatCompletionNewParams{
-// 		Messages: openai.F([]openai.ChatCompletionMessageParamUnion{
-// 			openai.UserMessage(t),
-// 		}),
-// 		Model: openai.F(openai.ChatModelGPT4o),
-// 	})
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	fmt.Println(chatCompletion.Choices[0].Message.Content)
-// 	return t, nil
-// }
-// func (self *chatgptImpl) PromptStreamWithContext(t string, ctx context.Context) (string, error) {
-// 	chatCompletion, err := self.client.Chat.Completions.New(ctx, openai.ChatCompletionNewParams{
-// 		Messages: openai.F([]openai.ChatCompletionMessageParamUnion{
-// 			openai.UserMessage(t),
-// 		}),
-// 		Model: openai.F(openai.ChatModelGPT4o),
-// 	})
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	fmt.Println(chatCompletion.Choices[0].Message.Content)
-// 	return t, nil
-// }
-// func (self *chatgptImpl) PromptStreamWithContextAndParams(t string, ctx context.Context, params openai.ChatCompletionNewParams) (string, error) {
-// 	chatCompletion, err := self.client.Chat.Completions.New(ctx, params)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	fmt.Println(chatCompletion.Choices[0].Message.Content)
-// 	return t, nil
-// }

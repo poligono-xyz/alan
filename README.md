@@ -21,7 +21,7 @@ go get github.com/poligono-xyz/alan
 
 Creating a Client
 
-You can create a client for either ChatGPT or Gemini by providing the appropriate configuration.
+You can create a client for Gemini, ChatGPT, or Claude by providing the appropriate configuration.
 
 ### ChatGPT Example
 
@@ -30,14 +30,14 @@ import (
   "fmt"
 
   "github.com/poligono-xyz/alan"
-  "github.com/poligono-xyz/alan/option"
+  clientOption "github.com/poligono-xyz/alan/option/client"
 )
 
 func main() {
   client, err := alan.NewClient(
-    option.WithProvider(alan.GeminiProvider),
-    option.WithModel(alan.ChatModelChatgpt4oLatest),
-    option.WithAPIKey("api-key"),
+    clientOption.WithProvider(alan.ChatGPTProvider),
+    clientOption.WithModel(alan.ChatModelGPT4oMini),
+    clientOption.WithAPIKey("api-key"), // Replace with your OpenAI API key
   )
   if err != nil {
     panic(err)
@@ -59,14 +59,14 @@ import (
   "fmt"
 
   "github.com/poligono-xyz/alan"
-  "github.com/poligono-xyz/alan/option"
+  clientOption "github.com/poligono-xyz/alan/option/client"
 )
 
 func main() {
   client, err := alan.NewClient(
-    option.WithProvider(alan.GeminiProvider),
-    option.WithModel(alan.Gemini15Flash),
-    option.WithAPIKey("api-key"),
+    clientOption.WithProvider(alan.GeminiProvider),
+    clientOption.WithModel(alan.Gemini15Flash),
+    clientOption.WithAPIKey("api-key"), // Replace with your Gemini API key
   )
   if err != nil {
     panic(err)
@@ -79,7 +79,6 @@ func main() {
 
   fmt.Println(result)
 }
-
 ```
 
 ### Claude Example
@@ -89,14 +88,14 @@ import (
   "fmt"
 
   "github.com/poligono-xyz/alan"
-  "github.com/poligono-xyz/alan/option"
+  clientOption "github.com/poligono-xyz/alan/option/client"
 )
 
 func main() {
   client, err := alan.NewClient(
-    option.WithProvider(alan.GeminiProvider),
-    option.WithModel(alan.Gemini15Flash),
-    option.WithAPIKey("api-key"),
+    clientOption.WithProvider(alan.ClaudeProvider),
+    clientOption.WithModel(alan.ModelClaude3_7SonnetLatest),
+    clientOption.WithAPIKey("api-key"), // Replace with your Anthropic API key
   )
   if err != nil {
     panic(err)
@@ -109,7 +108,6 @@ func main() {
 
   fmt.Println(result)
 }
-
 ```
 
 ## Supported Models
