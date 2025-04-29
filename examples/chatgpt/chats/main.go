@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	chatgpt, err := alan.NewClient(
+	client, err := alan.NewClient(
 		clientOption.WithProvider(alan.ChatGPTProvider),
 		clientOption.WithModel(alan.ChatModelGPT4),
 		clientOption.WithAPIKey("YOUR_API_KEY"),
@@ -17,12 +17,12 @@ func main() {
 		panic(err)
 	}
 
-	model := chatgpt.GetModel()
-	provider := chatgpt.GetProvider()
+	model := client.GetModel()
+	provider := client.GetProvider()
 	println("Model: ", model)
 	println("Provider: ", provider)
 
-	chat, err := chatgpt.NewChat(chatOption.WithTemperature(0.5))
+	chat, err := client.NewChat(chatOption.WithTemperature(0.5))
 	if err != nil {
 		panic(err)
 	}

@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	gemini, err := alan.NewClient(
+	client, err := alan.NewClient(
 		clientOption.WithProvider(alan.GeminiProvider),
 		clientOption.WithModel(alan.Gemini15Flash),
 		clientOption.WithAPIKey("YOUR_API_KEY"),
@@ -17,12 +17,12 @@ func main() {
 		panic(err)
 	}
 
-	model := gemini.GetModel()
-	provider := gemini.GetProvider()
+	model := client.GetModel()
+	provider := client.GetProvider()
 	println("Model: ", model)
 	println("Provider: ", provider)
 
-	chat, err := gemini.NewChat(chatOption.WithTemperature(0.5))
+	chat, err := client.NewChat(chatOption.WithTemperature(0.5))
 	if err != nil {
 		panic(err)
 	}
