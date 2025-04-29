@@ -52,7 +52,10 @@ func (self *chatgptImpl) NewChat(options ...ChatOption) (Chat, error) {
 	for _, option := range options {
 		option(config)
 	}
-	chat := &chatImpl{}
+	chat := &chatImpl{
+		providerClient:                   self.client,
+		chatCompletionMessageParamUnions: []openai.ChatCompletionMessageParamUnion{},
+	}
 	return chat, nil
 }
 

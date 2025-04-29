@@ -37,13 +37,13 @@ func main() {
   client, err := alan.NewClient(
     clientOption.WithProvider(alan.ChatGPTProvider),
     clientOption.WithModel(alan.ChatModelGPT4oMini),
-    clientOption.WithAPIKey("api-key"), // Replace with your OpenAI API key
+    clientOption.WithAPIKey("YOUR_API_KEY"), // Replace with your OpenAI API key
   )
   if err != nil {
     panic(err)
   }
 
-  result, err := client.Prompt("Where is the Dominican Republic located?")
+  result, err := client.Prompt("What's the weather in the Dominican Republic?")
   if err != nil {
     panic(err)
   }
@@ -66,13 +66,13 @@ func main() {
   client, err := alan.NewClient(
     clientOption.WithProvider(alan.GeminiProvider),
     clientOption.WithModel(alan.Gemini15Flash),
-    clientOption.WithAPIKey("api-key"), // Replace with your Gemini API key
+    clientOption.WithAPIKey("YOUR_API_KEY"), // Replace with your Gemini API key
   )
   if err != nil {
     panic(err)
   }
 
-  result, err := client.Prompt("Where is the Dominican Republic located?")
+  result, err := client.Prompt("What's the weather in the Dominican Republic?")
   if err != nil {
     panic(err)
   }
@@ -95,13 +95,13 @@ func main() {
   client, err := alan.NewClient(
     clientOption.WithProvider(alan.ClaudeProvider),
     clientOption.WithModel(alan.ModelClaude3_7SonnetLatest),
-    clientOption.WithAPIKey("api-key"), // Replace with your Anthropic API key
+    clientOption.WithAPIKey("YOUR_API_KEY"), // Replace with your Anthropic API key
   )
   if err != nil {
     panic(err)
   }
 
-  result, err := client.Prompt("Where is the Dominican Republic located?")
+  result, err := client.Prompt("What's the weather in the Dominican Republic?")
   if err != nil {
     panic(err)
   }

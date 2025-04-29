@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	gemini, err := alan.NewClient(
-		clientOption.WithProvider(alan.GeminiProvider),
-		clientOption.WithModel(alan.Gemini15Flash),
+	chatgpt, err := alan.NewClient(
+		clientOption.WithProvider(alan.ChatGPTProvider),
+		clientOption.WithModel(alan.ChatModelGPT4),
 		clientOption.WithAPIKey("YOUR_API_KEY"),
 	)
 
@@ -17,23 +17,23 @@ func main() {
 		panic(err)
 	}
 
-	model := gemini.GetModel()
-	provider := gemini.GetProvider()
+	model := chatgpt.GetModel()
+	provider := chatgpt.GetProvider()
 	println("Model: ", model)
 	println("Provider: ", provider)
 
-	chat, err := gemini.NewChat(chatOption.WithTemperature(0.5))
+	chat, err := chatgpt.NewChat(chatOption.WithTemperature(0.5))
 	if err != nil {
 		panic(err)
 	}
 
-	result, err := chat.Prompt("Where is the Dominican Republic located?")
+	result, err := chat.Prompt("What's the weather in the Dominican Republic?")
 	if err != nil {
 		panic(err)
 	}
 	println(result)
 
-	result, err = chat.Prompt("Where is the Japan located?")
+	result, err = chat.Prompt("What's the weather in the Japan?")
 	if err != nil {
 		panic(err)
 	}
