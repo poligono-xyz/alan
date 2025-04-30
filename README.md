@@ -4,10 +4,10 @@ The `alan` library provides a unified interface for interacting with multiple la
 
 ## Features
 
-- **Multi-Model Support**: Seamlessly interact with ChatGPT and Gemini models.
-- **Customizable Configurations**: Configure API keys and model versions for each provider.
-- **Unified Interface**: Use a single interface to prompt different LLMs.
-- **Extensible**: Easily add support for additional models.
+- 🔄 **Multi-Model Support**: Seamlessly interact with ChatGPT and Gemini models.
+- ⚙️ **Customizable Configurations**: Configure API keys and model versions for each provider.
+- 🔗 **Unified Interface**: Use a single interface to prompt different LLMs.
+- ➕ **Extensible**: Easily add support for additional models.
 
 ## Installation
 
@@ -18,8 +18,6 @@ go get github.com/poligono-xyz/alan
 ```
 
 ## Usage
-
-Creating a Client
 
 You can create a client for Gemini, ChatGPT, or Claude by providing the appropriate configuration.
 
@@ -270,21 +268,6 @@ func main() {
 ```
 
 </details>
-
-## Supported Models
-
-ChatGPT
-
-- GPT-4
-- GPT-4 Turbo
-- GPT-3.5 Turbo
-- GPT-4o and GPT-4o Mini
-
-Gemini
-
-- Gemini 2.0 Flash
-- Gemini 1.5 Flash
-- Gemini Text Embedding
 
 ## Contributing
 
