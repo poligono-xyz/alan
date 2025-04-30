@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/poligono-xyz/alan/compare/v0.1.1...v0.1.2) (2025-04-30)
+
+
+### Bug Fixes
+
+* updates ([6ad7083](https://github.com/poligono-xyz/alan/commit/6ad708340ccec5d536a391cbe6227f8c96b97753))
+
 ## [0.1.1](https://github.com/poligono-xyz/alan/compare/v0.1.0...v0.1.1) (2025-04-30)
 
 
