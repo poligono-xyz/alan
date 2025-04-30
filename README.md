@@ -1,6 +1,6 @@
 # Alan
 
-The `alan` library provides a unified interface for interacting with multiple large language models (LLMs), including OpenAI's ChatGPT and Google's Gemini. It simplifies the process of configuring and using these models in your Go applications.
+`Alan` is unified interface for interacting with multiple large language models (LLMs) in Golang, including OpenAI's ChatGPT and Google's Gemini. It simplifies the process of configuring and using these models in your Go applications.
 
 ## Features
 
