@@ -58,7 +58,3 @@ func NewClient(options ...ClientOption) (Client, error) {
 		return nil, nil
 	}
 }
-
-// hello world
-// hello world
-// hello world
